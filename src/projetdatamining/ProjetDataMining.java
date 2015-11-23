@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package projetdatamining;
+import UI.MainWindow;
+import java.net.MalformedURLException;
 
 /**
  *
@@ -14,8 +16,10 @@ public class ProjetDataMining {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MalformedURLException {
         // TODO code application logic here
+        MainWindow Accueil = new MainWindow();
+        Accueil.setVisible(true);
     }
     
 }
