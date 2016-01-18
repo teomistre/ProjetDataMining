@@ -7,6 +7,7 @@ package projetdatamining;
 
 import java.io.IOException;
 import weka.core.Instances;
+import weka.core.converters.ArffLoader;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Remove;
 import weka.core.converters.JSONLoader;
@@ -18,23 +19,29 @@ import weka.core.converters.JSONLoader;
 public final class WekaAnalizer 
 {
     ///Données du json chargées
-    private JSONLoader Data;
+    private ArffLoader Data;
 
     ///getter de données
-    public JSONLoader getData() {
+    public ArffLoader getData() {
         return Data;
     }
     //Setter des données du jSOn
-    public void setData(JSONLoader data) {
+    public void setData(ArffLoader data) {
         this.Data = data;
     }
     //Constructeur
-    public WekaAnalizer(JSONLoader data)
+    public WekaAnalizer(ArffLoader data) throws Exception
     {
         setData(data);
+        AnalyzeData();
     }
     
     //Analyseur de données
+    /**
+     * 
+     * @throws IOException
+     * @throws Exception 
+     */
     public void AnalyzeData() throws IOException, Exception{
         Instances data = getData().getDataSet();
         String[] options = new String[2];

@@ -12,6 +12,8 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import projetdatamining.ProjetDataMining;
+import projetdatamining.WekaAnalizer;
+import weka.core.converters.ArffLoader;
 import weka.core.converters.JSONLoader;
 
 /**
@@ -94,8 +96,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String textData = jTextField1.getText();
-        JSONLoader loader
-                 = new JSONLoader();
+        ArffLoader loader = new ArffLoader();
         if( textData.contains("http")){
             URL url = null;
             try {
@@ -105,6 +106,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
             try {
                 loader.setSource(url);
+                WekaAnalizer analyze = new WekaAnalizer(loader);
             } 
             catch (IOException ex) {
                 Logger.getLogger(ProjetDataMining.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,6 +117,7 @@ public class MainWindow extends javax.swing.JFrame {
             if(file.exists()){
                 try {
                     loader.setSource(file);
+                    WekaAnalizer analyze = new WekaAnalizer(loader);
                 } catch (IOException ex) {
                     Logger.getLogger(ProjetDataMining.class.getName()).log(Level.SEVERE, null, ex);
                 }
